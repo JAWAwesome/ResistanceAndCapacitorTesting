@@ -11,7 +11,7 @@ public class Runner {
     static Resistor resistance = new Resistor();
     static Capacitor capacitance = new Capacitor();
     static Scanner kb = new Scanner(System.in);
-    static int boxHeight = 200;
+    static int boxHeight = 250;
     static int boxWidth = 500;
     static int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
     static int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
@@ -47,12 +47,15 @@ public class Runner {
 
     public static void main (String args[]) {
         buildView();
-        window.show();
     }
 
     public static void buildView() {
         // Get the window size
         window.show();
+        System.out.println(window.getInsets().top);
+        System.out.println(window.getInsets().bottom);
+        System.out.println(window.getInsets().left);
+        System.out.println(window.getInsets().right);
         boxHeight = boxHeight + window.getInsets().top+window.getInsets().bottom;
         boxWidth = boxWidth + window.getInsets().left+window.getInsets().right;
         window.hide();
@@ -173,10 +176,12 @@ public class Runner {
         ro.setLocation(0,boxHeight/4);
         ro.setEditable(false);
         ro.setFont(textField);
+        ro.setText("No Ohms");
         co.setSize(boxWidth/2,boxHeight/4);
         co.setLocation(boxWidth/2,boxHeight/2);
         co.setEditable(false);
         co.setFont(textField);
+        co.setText("No Farads");
 
         // Create Error output area
         out.setSize(boxWidth,boxHeight-r1.getHeight()-ro.getHeight()-co.getHeight());
@@ -187,6 +192,7 @@ public class Runner {
                 System.out.println(out.getText());
             }
         });
+        out.setFont(textField);
 
         // Put the stuff in the window
         window.add(r1);
@@ -196,15 +202,16 @@ public class Runner {
         window.add(c);
         window.add(ro);
         window.add(co);
-
         window.add(out);
-        window.remove(out);
+        window.add(new JLabel());
 
         // Modify window properties
         window.setSize(boxWidth,boxHeight);
         window.setResizable(false);
         window.setAlwaysOnTop(true);
         window.setLocation(screenWidth/2-boxWidth/2,screenHeight/2-boxHeight/2);
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.show();
     }
 
     public static void updateView(boolean resistor) {
