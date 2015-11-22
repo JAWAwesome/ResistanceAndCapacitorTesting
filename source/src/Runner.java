@@ -176,12 +176,12 @@ public class Runner {
         ro.setLocation(0,boxHeight/4);
         ro.setEditable(false);
         ro.setFont(textField);
-        ro.setText("No Ohms");
+        ro.setText("Zero Ohms");
         co.setSize(boxWidth/2,boxHeight/4);
         co.setLocation(boxWidth/2,boxHeight/2);
         co.setEditable(false);
         co.setFont(textField);
-        co.setText("No Farads");
+        co.setText("Zero Farads");
 
         // Create Error output area
         out.setSize(boxWidth,boxHeight-r1.getHeight()-ro.getHeight()-co.getHeight());
